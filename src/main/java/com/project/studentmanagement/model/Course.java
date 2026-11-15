@@ -1,0 +1,48 @@
+package com.project.studentmanagement.model;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+@Getter
+@Setter
+@Entity
+public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "coursename", nullable = false)
+    private String courseName;
+
+    @Column(name = "coursecode", nullable = false, unique = true)
+    private String courseCode;
+
+    private String duration;
+
+    @Column(name = "active", nullable = false)
+    private boolean active;
+
+    @Column(precision = 12,scale = 2, nullable = false)
+    private BigDecimal fee;
+
+    @Column(length = 1000)
+    private String description;
+
+    @Column(nullable = false,updatable = false)
+    private LocalDateTime createsAt;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Enrollment> enrollments = new HashSet<>();
+
+    @PrePersist
+    public void onCreate(){
+        createsAt =LocalDateTime.now();
+        active =true;
+    }
+}
