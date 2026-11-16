@@ -1,4 +1,6 @@
-
+Demo Credentials:- Username = Admin
+                   Password = Admin@123
+                   
 # Student Management System
 
 A full-stack Student Management System built using **Java, Spring Boot, Thymeleaf, and PostgresSQL**. The application provides a structured platform to manage student records, enroll students in courses, and handle student information through a secure and user-friendly interface.
